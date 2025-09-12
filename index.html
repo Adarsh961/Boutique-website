@@ -77,12 +77,12 @@
     }
 
     /* ----------------------------
-       HERO (LOGO LEFT, TEXT CENTER)
+       HERO
     ---------------------------- */
     .hero {
-      width: 100%;
+      max-width: 1160px;
       height: 220px;
-      background: linear-gradient(to right, #550000, #8b223a); /* Gradient maroon */
+      background: linear-gradient(to right, #550000, #8b223a);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -113,7 +113,7 @@
     }
 
     /* ----------------------------
-       SECTION BASE STYLES
+       SECTIONS
     ---------------------------- */
     section {
       padding: 60px 40px;
@@ -121,9 +121,6 @@
       margin: 0 auto;
     }
 
-    /* ----------------------------
-       ABOUT SECTION
-    ---------------------------- */
     #about {
       background-color: var(--primary-bg);
     }
@@ -136,9 +133,6 @@
       color: var(--body-text);
     }
 
-    /* ----------------------------
-       PRODUCTS SECTION
-    ---------------------------- */
     #products {
       background-color: #fff;
       color: #333;
@@ -187,9 +181,6 @@
       font-weight: bold;
     }
 
-    /* ----------------------------
-       GALLERY SECTION
-    ---------------------------- */
     #gallery {
       background-color: var(--primary-bg);
     }
@@ -214,9 +205,6 @@
       transform: scale(1.05);
     }
 
-    /* ----------------------------
-       CONTACT SECTION
-    ---------------------------- */
     .contact-form {
       max-width: 600px;
       margin: 0 auto;
@@ -248,9 +236,6 @@
       color: #000;
     }
 
-    /* ----------------------------
-       FOOTER
-    ---------------------------- */
     footer {
       background-color: var(--primary-bg);
       color: var(--muted-text);
@@ -269,9 +254,6 @@
       color: var(--secondary-gold);
     }
 
-    /* ----------------------------
-       RESPONSIVE DESIGN
-    ---------------------------- */
     @media (max-width: 768px) {
       .hero-logo {
         height: 60px;
@@ -305,7 +287,7 @@
     <div class="hero-text">SRI VAIBHAV LAXMI</div>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section id="about">
     <h2>About Us</h2>
     <div class="about-content">
@@ -313,7 +295,7 @@
     </div>
   </section>
 
-  <!-- Products Section -->
+  <!-- Products -->
   <section id="products">
     <h2>Our Products</h2>
     <div class="products-grid">
@@ -341,7 +323,7 @@
     </div>
   </section>
 
-  <!-- Gallery Section -->
+  <!-- Gallery -->
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery-grid">
@@ -352,10 +334,10 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <form name="contact" method="POST" data-netlify="true" class="contact-form">
+    <form name="contact" method="POST" data-netlify="true" action="/success" class="contact-form">
       <input type="hidden" name="form-name" value="contact">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
@@ -363,6 +345,13 @@
       <button type="submit">Send Message</button>
     </form>
   </section>
+
+  <!-- Hidden Fallback Form -->
+  <form name="contact" netlify hidden>
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <textarea name="message"></textarea>
+  </form>
 
   <!-- Footer -->
   <footer>
@@ -373,6 +362,5 @@
       <a href="#"><i class="fab fa-whatsapp"></i></a>
     </div>
   </footer>
-
 </body>
 </html>
