@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sri Vaibhav Laxmi Boutique and Tailoring</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ----------------------------
+       COLOR VARIABLES
+    ---------------------------- */
+    :root {
+      --primary-bg: #013220;      /* Dark green background */
+      --primary-gold: #FFD700;    /* Bright gold */
+      --secondary-gold: #E5C07B;  /* Muted gold */
+      --body-text: #FFFFFF;       /* White text */
+      --muted-text: #B0B0B0;      /* Muted gray text */
+    }
+
+    /* ----------------------------
+       GLOBAL STYLES
+    ---------------------------- */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: var(--body-text);
+      background-color: #f9f9f9;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 58px;
+      margin-bottom: 80px;
+      color: var(--primary-gold);
+    }
+
+    /* ----------------------------
+       HEADER
+    ---------------------------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--primary-bg);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      padding: 10px;
+      color: var(--body-text);
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary-gold);
+    }
+
+    /* ----------------------------
+       HERO (LOGO LEFT, TEXT CENTER)
+    ---------------------------- */
+    .hero {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(to right, #550000, #8b223a); /* Gradient maroon */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0px 60px;
+      position: relative;
+    }
+
+    .hero-logo {
+      height: 200px;
+      width: auto;
+      margin-left: 0;
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+      z-index: 2;
+    }
+
+    .hero-text {
+      position: absolute;
+      left: 55%;
+      transform: translateX(-50%);
+      font-size: 79px;
+      font-weight: bold;
+      color: var(--primary-gold);
+      white-space: nowrap;
+    }
+
+    /* ----------------------------
+       SECTION BASE STYLES
+    ---------------------------- */
+    section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ----------------------------
+       ABOUT SECTION
+    ---------------------------- */
+    #about {
+      background-color: var(--primary-bg);
+    }
+
+    .about-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: var(--body-text);
+    }
+
+    /* ----------------------------
+       PRODUCTS SECTION
+    ---------------------------- */
+    #products {
+      background-color: #fff;
+      color: #333;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: var(--primary-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product-info {
+      padding: 15px;
+      text-align: center;
+      color: var(--body-text);
+    }
+
+    .product-info h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--primary-gold);
+    }
+
+    .product-info p {
+      font-size: 16px;
+      color: var(--secondary-gold);
+      font-weight: bold;
+    }
+
+    /* ----------------------------
+       GALLERY SECTION
+    ---------------------------- */
+    #gallery {
+      background-color: var(--primary-bg);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .gallery-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* ----------------------------
+       CONTACT SECTION
+    ---------------------------- */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      width: 103.9%;
+      padding: 14px;
+      background-color: var(--primary-gold);
+      color: var(--primary-bg);
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact-form button:hover {
+      background-color: var(--secondary-gold);
+      color: #000;
+    }
+
+    /* ----------------------------
+       FOOTER
+    ---------------------------- */
+    footer {
+      background-color: var(--primary-bg);
+      color: var(--muted-text);
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: var(--primary-gold);
+      margin: 0 10px;
+      font-size: 24px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: var(--secondary-gold);
+    }
+
+    /* ----------------------------
+       RESPONSIVE DESIGN
+    ---------------------------- */
+    @media (max-width: 768px) {
+      .hero-logo {
+        height: 60px;
+      }
+      .hero-text {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <img src="WhatsApp_Image_2025-09-10_at_11.21.03_c6e16800-removebg-preview.png" alt="SRI VAIBHAV LAXMI LOGO" class="hero-logo">
+    <div class="hero-text">SRI VAIBHAV LAXMI</div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <p>Sri Vaibhav Laxmi Boutique and Tailoring specializes in handloom embroidery, blending traditional craftsmanship with modern designs. Our boutique offers a wide range of custom-tailored clothing, embroidered fabrics, and accessories.</p>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products">
+    <h2>Our Products</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('IMG-20250909-WA0006.jpg');"></div>
+        <div class="product-info">
+          <h3>Embroidered Saree</h3>
+          <p>₹5,000</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('WhatsApp Image 2025-09-10 at 10.56.20_5b8fbb5c.jpg');"></div>
+        <div class="product-info">
+          <h3>Handloom Kurta</h3>
+          <p>₹2,500</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('/IMG-20250909-WA0007.jpg');"></div>
+        <div class="product-info">
+          <h3>Custom Tailored Dress</h3>
+          <p>₹3,000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-image" style="background-image: url('IMG-20250909-WA0005.jpg');"></div>
+      <div class="gallery-image" style="background-image: url('WhatsApp Image 2025-09-10 at 11.04.37_8de4e779.jpg');"></div>
+      <div class="gallery-image" style="background-image: url('IMG-20250909-WA0004.jpg');"></div>
+      <div class="gallery-image" style="background-image: url('IMG-20250909-WA0001.jpg');"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form name="contact" method="POST" data-netlify="true" class="contact-form">
+      <input type="hidden" name="form-name" value="contact">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Sri Vaibhav Laxmi Boutique and Tailoring. All rights reserved.</p>
+    <div>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>
