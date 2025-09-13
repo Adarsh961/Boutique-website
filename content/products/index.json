@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Embroidered Saree",
+    "price": "5000",
+    "image": "/images/uploads/saree.jpg"
+  },
+  {
+    "title": "Handloom Kurta",
+    "price": "2500",
+    "image": "/images/uploads/kurta.jpg"
+  },
+  {
+    "title": "Custom Tailored Dress",
+    "price": "3000",
+    "image": "/images/uploads/dress.jpg"
+  }
+]
