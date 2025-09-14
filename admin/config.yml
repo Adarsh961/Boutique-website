@@ -1,25 +1,30 @@
 backend:
   name: git-gateway
-  branch: main   # or 'master' if your repo uses that
+  branch: main # or master, make sure this matches your repo default branch
 
-media_folder: "images"     # ✅ This matches your actual folder
-public_folder: "/images"
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: "${CLOUDINARY_CLOUD_NAME}"
+    api_key: "${CLOUDINARY_API_KEY}"
+
+public_folder: "/images/uploads"
 
 collections:
-  - name: "products"
-    label: "Products"
-    folder: "content/products"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Product Name", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-
   - name: "gallery"
     label: "Gallery"
     folder: "content/gallery"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Image", name: "image", widget: "image" }
+      - { name: "image", label: "Image", widget: "image" }
+
+  - name: "products"
+    label: "Products"
+    folder: "content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "price", label: "Price", widget: "number" }
+      - { name: "image", label: "Image", widget: "image" }
