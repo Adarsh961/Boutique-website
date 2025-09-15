@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Vaibhav Laxmi Boutique and Tailoring</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -18,29 +18,53 @@
     }
 
     /* ----------------------------
-       GLOBAL STYLES
+       GLOBAL RESET + LAYOUT
     ---------------------------- */
-    body {
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden; /* prevent side white gaps / horizontal scroll */
+    }
+
+    body {
       font-family: 'Arial', sans-serif;
       color: var(--body-text);
       background-color: #f9f9f9;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    a { text-decoration: none; color: inherit; }
+
+    /* utility: make a section full-bleed (edge to edge) while keeping an inner constrained container */
+    .full-bleed {
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      width: 100vw;
+      box-sizing: border-box;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      box-sizing: border-box;
     }
 
     h2 {
       text-align: center;
-      font-size: 58px;
-      margin-bottom: 80px;
+      font-size: 48px;
+      margin: 0 0 40px;
       color: var(--primary-gold);
     }
 
     /* ----------------------------
-       HEADER
+       HEADER (NAV)
     ---------------------------- */
     header {
       position: sticky;
@@ -50,83 +74,75 @@
     }
 
     .header-container {
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      box-sizing: border-box;
     }
 
     nav ul {
       list-style: none;
       display: flex;
+      gap: 28px;
       margin: 0;
       padding: 0;
-    }
-
-    nav ul li {
-      margin-left: 20px;
+      align-items: center;
+      justify-content: center;
     }
 
     nav ul li a {
-      padding: 10px;
+      padding: 8px 6px;
       color: var(--body-text);
-      transition: color 0.3s;
+      transition: color 0.25s;
+      font-size: 18px;
     }
 
-    nav ul li a:hover {
-      color: var(--primary-gold);
-    }
+    nav ul li a:hover { color: var(--primary-gold); }
 
     /* ----------------------------
-       HERO (LOGO LEFT, TEXT CENTER)
+       HERO (full-width gradient)
     ---------------------------- */
-    .hero {
+    .hero.full-bleed {
+      background: linear-gradient(to right, #550000, #8b223a);
+    }
+
+    .hero-inner {
       max-width: 1160px;
-      height: 220px;
-      background: linear-gradient(to right, #550000, #8b223a); /* Gradient maroon */
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0px 60px;
-      position: relative;
+      justify-content: flex-start; /* logo to left, title centered via flex on the title */
+      gap: 20px;
+      padding: 24px 40px;
+      min-height: 220px;
+      box-sizing: border-box;
     }
 
     .hero-logo {
-      height: 200px;
+      height: 160px;
       width: auto;
-      margin-left: 0;
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
+      flex: 0 0 auto;
       display: block;
-      z-index: 2;
     }
 
     .hero-text {
-      position: absolute;
-      left: 55%;
-      transform: translateX(-50%);
-      font-size: 79px;
-      font-weight: bold;
+      flex: 1 1 auto;
+      text-align: center;
+      font-size: clamp(28px, 6vw, 79px);
+      font-weight: 800;
       color: var(--primary-gold);
+      line-height: 1;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* ----------------------------
-       SECTION BASE STYLES
-    ---------------------------- */
-    section {
-      padding: 60px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .hero-text.allow-wrap { white-space: normal; }
 
     /* ----------------------------
-       ABOUT SECTION
+       ABOUT (full-bleed dark green)
     ---------------------------- */
-    #about {
-      background-color: var(--primary-bg);
-    }
+    #about.full-bleed { background-color: var(--primary-bg); }
 
     .about-content {
       text-align: center;
@@ -134,15 +150,14 @@
       margin: 0 auto;
       line-height: 1.6;
       color: var(--body-text);
+      font-size: 18px;
     }
 
     /* ----------------------------
-       PRODUCTS SECTION
+       PRODUCTS (full-bleed white)
     ---------------------------- */
-    #products {
-      background-color: #fff;
-      color: #333;
-    }
+    #products.full-bleed { background-color: #ffffff; color: #333; }
+    #products .section-inner { padding-top: 40px; padding-bottom: 40px; }
 
     .products-grid {
       display: grid;
@@ -154,13 +169,10 @@
       background-color: var(--primary-bg);
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s;
     }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
+    .product-card:hover { transform: translateY(-5px); }
 
     .product-image {
       width: 100%;
@@ -188,11 +200,9 @@
     }
 
     /* ----------------------------
-       GALLERY SECTION
+       GALLERY (full-bleed dark green)
     ---------------------------- */
-    #gallery {
-      background-color: var(--primary-bg);
-    }
+    #gallery.full-bleed { background-color: var(--primary-bg); }
 
     .gallery-grid {
       display: grid;
@@ -206,47 +216,26 @@
       background-size: cover;
       background-position: center;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
       transition: transform 0.3s;
     }
-
-    .gallery-image:hover {
-      transform: scale(1.05);
-    }
+    .gallery-image:hover { transform: scale(1.05); }
 
     /* ----------------------------
-       CONTACT SECTION
+       CONTACT (full-bleed white or dark — choose white for contrast)
     ---------------------------- */
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    #contact.full-bleed { background-color: #ffffff; color: #333; }
+    #contact .section-inner { padding-top: 40px; padding-bottom: 40px; }
 
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+    .contact-form { max-width: 600px; margin: 0 auto; }
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px;
     }
-
     .contact-form button {
-      width: 103.9%;
-      padding: 14px;
-      background-color: var(--primary-gold);
-      color: var(--primary-bg);
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+      width: 100%; padding: 14px; background-color: var(--primary-gold); color: var(--primary-bg);
+      font-weight: bold; border: none; border-radius: 5px; cursor: pointer;
     }
-
-    .contact-form button:hover {
-      background-color: var(--secondary-gold);
-      color: #000;
-    }
+    .contact-form button:hover { background-color: var(--secondary-gold); color: #000; }
 
     /* ----------------------------
        FOOTER
@@ -257,28 +246,41 @@
       text-align: center;
       padding: 20px;
     }
-
-    footer a {
-      color: var(--primary-gold);
-      margin: 0 10px;
-      font-size: 24px;
-      transition: color 0.3s;
-    }
-
-    footer a:hover {
-      color: var(--secondary-gold);
-    }
+    footer a { color: var(--primary-gold); margin: 0 10px; font-size: 24px; }
+    footer a:hover { color: var(--secondary-gold); }
 
     /* ----------------------------
-       RESPONSIVE DESIGN
+       RESPONSIVE
     ---------------------------- */
+    @media (max-width: 1024px) {
+      .hero-logo { height: 140px; }
+      .hero-inner { padding: 20px; }
+    }
+
     @media (max-width: 768px) {
-      .hero-logo {
-        height: 60px;
+      nav ul { flex-wrap: wrap; justify-content: center; gap: 12px; padding: 6px 12px; }
+      nav ul li a { font-size: 16px; }
+
+      .hero-inner {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 20px;
+        min-height: 180px;
       }
-      .hero-text {
-        font-size: 32px;
-      }
+
+      .hero-logo { height: 90px; margin-bottom: 8px; }
+      .hero-text { font-size: clamp(20px, 8vw, 36px); white-space: normal; }
+      .hero-text.allow-wrap { white-space: normal; }
+      h2 { font-size: 34px; margin-bottom: 36px; }
+      .section-inner { padding: 40px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-logo { height: 70px; }
+      .hero-text { font-size: clamp(18px, 9vw, 28px); }
+      .product-image { height: 200px; }
+      .gallery-image { height: 140px; }
     }
   </style>
 </head>
@@ -299,69 +301,79 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <img src="LOGO.png" alt="SRI VAIBHAV LAXMI LOGO" class="hero-logo">
-    <div class="hero-text">SRI VAIBHAV LAXMI</div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <div class="about-content">
-      <p>Sri Vaibhav Laxmi Boutique and Tailoring specializes in handloom embroidery, blending traditional craftsmanship with modern designs. Our boutique offers a wide range of custom-tailored clothing, embroidered fabrics, and accessories.</p>
+  <!-- Hero (full-width gradient) -->
+  <section id="home" class="hero full-bleed">
+    <div class="hero-inner">
+      <img src="LOGO.png" alt="SRI VAIBHAV LAXMI LOGO" class="hero-logo">
+      <div class="hero-text allow-wrap">SRI VAIBHAV LAXMI</div>
     </div>
   </section>
 
-  <!-- Products Section -->
-  <section id="products">
-    <h2>Our Products</h2>
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="product-image" style="background-image: url('product1.jpg');"></div>
-        <div class="product-info">
-          <h3>Embroidered Saree</h3>
-          <p>₹5,000</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image" style="background-image: url('product2.jpg');"></div>
-        <div class="product-info">
-          <h3>Handloom Kurta</h3>
-          <p>₹2,500</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image" style="background-image: url('product3.jpg');"></div>
-        <div class="product-info">
-          <h3>Custom Tailored Dress</h3>
-          <p>₹3,000</p>
-        </div>
+  <!-- About Section (full-bleed dark green) -->
+  <section id="about" class="full-bleed">
+    <div class="section-inner">
+      <h2>About Us</h2>
+      <div class="about-content">
+        <p>Sri Vaibhav Laxmi Boutique and Tailoring specializes in handloom embroidery, blending traditional craftsmanship with modern designs. Our boutique offers a wide range of custom-tailored clothing, embroidered fabrics, and accessories.</p>
       </div>
     </div>
   </section>
 
-  <!-- Gallery Section -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-image" style="background-image: url('gallery1.jpg');"></div>
-      <div class="gallery-image" style="background-image: url('gallery2.png');"></div>
-      <div class="gallery-image" style="background-image: url('gallery3.jpg');"></div>
-      <div class="gallery-image" style="background-image: url('gallery4.jpg');"></div>
+  <!-- Products Section (full-bleed white) -->
+  <section id="products" class="full-bleed">
+    <div class="section-inner">
+      <h2 style="color: #333">Our Products</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('product1.jpg');"></div>
+          <div class="product-info">
+            <h3>Embroidered Saree</h3>
+            <p>₹5,000</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('product2.jpg');"></div>
+          <div class="product-info">
+            <h3>Handloom Kurta</h3>
+            <p>₹2,500</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('product3.jpg');"></div>
+          <div class="product-info">
+            <h3>Custom Tailored Dress</h3>
+            <p>₹3,000</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <form name="contact" method="POST" data-netlify="true" class="contact-form">
-      <input type="hidden" name="form-name" value="contact">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <!-- Gallery Section (full-bleed dark green) -->
+  <section id="gallery" class="full-bleed">
+    <div class="section-inner">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-image" style="background-image: url('gallery1.jpg');"></div>
+        <div class="gallery-image" style="background-image: url('gallery2.png');"></div>
+        <div class="gallery-image" style="background-image: url('gallery3.jpg');"></div>
+        <div class="gallery-image" style="background-image: url('gallery4.jpg');"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section (full-bleed white) -->
+  <section id="contact" class="full-bleed">
+    <div class="section-inner">
+      <h2 style="color: #333">Contact Us</h2>
+      <form name="contact" method="POST" data-netlify="true" class="contact-form">
+        <input type="hidden" name="form-name" value="contact">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   </section>
 
   <!-- Footer -->
